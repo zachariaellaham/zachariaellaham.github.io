@@ -89,6 +89,11 @@
       margin: 0 10px;
       border-radius: 4px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.1);
     }
 
     .fadeIn {
@@ -99,6 +104,53 @@
     @keyframes fadeInAnimation {
       0% { opacity: 0; }
       100% { opacity: 1; }
+    }
+
+    .tab-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .tabs {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .tab-links {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+
+    .tab-links li {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .tab-links li a {
+      text-decoration: none;
+      font-size: 18px;
+      color: #333;
+      padding: 10px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    .tab-links li a:hover {
+      background-color: #e73c7e;
+      color: white;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeInAnimation 0.5s ease forwards;
     }
   </style>
   <script>
@@ -123,6 +175,29 @@
           dish.classList.remove('fadeIn');
         });
       });
+
+      // Tab functionality
+      var tabLinks = document.querySelectorAll('.tab-links a');
+      var tabContents = document.querySelectorAll('.tab-content');
+
+      tabLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+
+          var target = this.getAttribute('href');
+
+          tabLinks.forEach(function(link) {
+            link.classList.remove('active');
+          });
+
+          tabContents.forEach(function(content) {
+            content.classList.remove('active');
+          });
+
+          this.classList.add('active');
+          document.querySelector(target).classList.add('active');
+        });
+      });
     }
   </script>
 </head>
@@ -134,46 +209,46 @@
 
   <div class="animation"></div>
 
-  <nav>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#specialty">Our Specialty</a></li>
-      <li><a href="#philosophy">Philosophy &amp; Technicity</a></li>
-      <li><a href="#reservation">Reservation</a></li>
+  <nav class="tab-container">
+    <ul class="tabs">
+      <li class="tab-links">
+        <a href="#about">About</a>
+      </li>
+      <li class="tab-links">
+        <a href="#specialty">Our Specialty</a>
+      </li>
+      <li class="tab-links">
+        <a href="#philosophy">Philosophy &amp; Technicity</a>
+      </li>
+      <li class="tab-links">
+        <a href="#reservation">Reservation</a>
+      </li>
     </ul>
   </nav>
 
-  <div id="about">
+  <div id="about" class="tab-content active">
     <h2>Welcome to Citron dans la Poche!</h2>
-    <p>Indulge in an unforgettable dining experience at Citron dans la Poche, where passion meets culinary artistry. Our expert chefs take great pride in crafting exquisite dishes that tantalize your taste buds and leave you craving for more.</p>
+    <p>Indulge in an unforgettable dining experience at Citron dans la Poche, where passion meets culinary artistry. Nestled in the heart of Lavaltrie, our restaurant is a haven for food enthusiasts seeking refined flavors and impeccable service.</p>
+    <p>Step into a world of elegance as you are greeted by our warm and inviting ambiance. Our talented chefs, with their years of experience and dedication, meticulously craft each dish to perfection, ensuring a symphony of flavors that will leave you craving for more.</p>
   </div>
 
-  <div class="gallery">
+  <div class="gallery" id="specialty">
     <img class="dish" src="https://images.radio-canada.ca/q_auto,w_844/v1/alimentation/recette/16x9/cailles-laquees-jus-pomme-5-chefs-dion-lavallee.jpg" alt="Dish 1">
     <img class="dish" src="https://images.radio-canada.ca/q_auto,w_844/v1/alimentation/recette/16x9/cailles-laquees-jus-pomme-5-chefs-dion-lavallee.jpg" alt="Dish 2">
     <img class="dish" src="https://images.radio-canada.ca/q_auto,w_844/v1/alimentation/recette/16x9/cailles-laquees-jus-pomme-5-chefs-dion-lavallee.jpg" alt="Dish 3">
   </div>
 
-  <div id="specialty">
-    <h2>Discover Our Specialty: La Caille au Jus de Provence Braisé</h2>
-    <p>Prepare to be amazed by our masterpiece - La Caille au Jus de Provence Braisé. Our chefs combine locally sourced ingredients with traditional French techniques to create a dish that perfectly balances flavors, textures, and aromas. Each bite is a celebration of gastronomic excellence.</p>
-  </div>
-
-  <div id="philosophy">
+  <div id="philosophy" class="tab-content">
     <h2>Philosophy &amp; Technicity</h2>
-    <p>At Citron dans la Poche, we believe that great food is more than just a combination of ingredients. It is a reflection of our passion for culinary excellence and a dedication to the art of cooking. Our philosophy revolves around the principles of:</p>
-    <ul>
-      <li><strong>Quality:</strong> We source the freshest and finest ingredients, carefully selecting each component to ensure exceptional taste and quality.</li>
-      <li><strong>Craftsmanship:</strong> Our chefs are highly skilled and trained in the intricate techniques of French cuisine. They bring their expertise and creativity to every dish they create.</li>
-      <li><strong>Innovation:</strong> While honoring traditional cooking methods, we strive to infuse our dishes with a touch of innovation, creating unique flavor combinations and captivating presentations.</li>
-      <li><strong>Precision:</strong> Every element of our dishes is meticulously planned and executed with precision. From the cooking temperature to the plating arrangement, we pay attention to the smallest details to deliver perfection on the plate.</li>
-    </ul>
+    <p>At Citron dans la Poche, we believe that gastronomy is an art form that transcends mere sustenance. Our philosophy revolves around the principles of quality, craftsmanship, innovation, and precision.</p>
+    <p>We source the freshest and finest ingredients, carefully selecting each component to ensure exceptional taste and quality. Our chefs are highly skilled and trained in the intricate techniques of French cuisine, bringing their expertise and creativity to every dish they create.</p>
+    <p>While honoring traditional cooking methods, we strive to infuse our dishes with a touch of innovation, creating unique flavor combinations and captivating presentations. Every element of our dishes is meticulously planned and executed with precision, from the cooking temperature to the plating arrangement, to deliver perfection on the plate.</p>
     <p>When it comes to our famous dish, La Caille au Jus de Provence Braisé, its preparation involves a series of meticulous steps that require a high level of technicity. From the careful marination of the quail to the slow braising process that tenderizes the meat and infuses it with rich flavors, each stage is executed with precision to achieve the perfect balance of taste and texture.</p>
   </div>
 
-  <div id="reservation">
+  <div id="reservation" class="tab-content">
     <h2>Make a Reservation</h2>
-    <p>Ready to experience the magic of Citron dans la Poche? Secure your table now by making a reservation. Whether it's a romantic dinner for two, a celebratory gathering, or a corporate event, we are here to provide you with an exceptional dining experience that will leave a lasting impression.</p>
+    <p>Ready to embark on a culinary journey at Citron dans la Poche? Secure your table now by making a reservation. Whether it's an intimate dinner for two or a gathering of friends and family, our attentive staff will ensure an unforgettable dining experience.</p>
     <button class="cta-button">Make a Reservation</button>
   </div>
 
