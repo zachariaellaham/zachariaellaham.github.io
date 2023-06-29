@@ -1,6 +1,97 @@
-<svg version="1.1" baseProfile="full" xmlns="http://www.w3.org/2000/svg">
-    <rect width="300" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
-    <script type="text/javascript">
-       alert("Ghostlulz XSS");
-    </script>
- </svg>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Citron dans la Poche</title>
+  <style>
+    /* CSS styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #5e6072;
+      color: white;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 36px;
+    }
+
+    .animation {
+      width: 200px;
+      height: 200px;
+      position: relative;
+      margin: 0 auto;
+      margin-top: 100px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+    }
+
+    @keyframes gradient {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    .cta-button {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 12px 24px;
+      font-size: 18px;
+      color: white;
+      background-color: #e73c7e;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .cta-button:hover {
+      background-color: #ff569e;
+    }
+
+    footer {
+      background-color: #5e6072;
+      color: white;
+      padding: 20px;
+      font-size: 14px;
+    }
+  </style>
+  <script>
+    // JavaScript animation
+    window.onload = function() {
+      var animation = document.querySelector('.animation');
+      animation.addEventListener('mouseover', function() {
+        animation.style.animationPlayState = 'paused';
+      });
+
+      animation.addEventListener('mouseout', function() {
+        animation.style.animationPlayState = 'running';
+      });
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>Citron dans la Poche</h1>
+    <p>Upscale Restaurant in Lavaltrie</p>
+  </header>
+
+  <div class="animation"></div>
+
+  <h2>Welcome to Citron dans la Poche!</h2>
+  <p>We specialize in serving the finest <strong>La Caille au Jus de Provence Braisé</strong>.</p>
+
+  <button class="cta-button">Make a Reservation</button>
+
+  <footer>
+    <p>&copy; 2023 Citron dans la Poche | Lavaltrie, Quebec</p>
+  </footer>
+</body>
+</html>
